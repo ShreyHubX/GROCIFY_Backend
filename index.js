@@ -11,11 +11,15 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://Grocify_adminuser:grocify16@grocifycluster0.g6szema.mongodb.net/?appName=GrocifyCluster0', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+require('dotenv').config();  // Add this at the top if not already
+const mongoose = require('mongoose');
+
+const uri = process.env.MONGO_URI;  // reads URI from .env
+
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB connected successfully"))
+  .catch(err => console.error("MongoDB connection error:", err));
+
 
 app.use('/grocery', groceryRoutes);
 app.use('/expense', expenseRoutes);
