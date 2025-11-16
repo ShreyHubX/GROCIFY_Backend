@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 // Connect to MongoDB
 require('dotenv').config();  // Add this at the top if not already
-const mongoose = require('mongoose');
+
 
 const uri = process.env.MONGO_URI;  // reads URI from .env
 
